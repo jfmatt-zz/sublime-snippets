@@ -1,3 +1,10 @@
+<!--
+	This snippet generates all the basic functions for a Wordpress widget.
+	The model I use defines a static array of default instance variables, then makes liberal use of wp_parse_args
+		to make sure that there's always a value defined when possible.
+	update() is complete as generated, so long as there's a default defined for every instance variable;
+		it will save the new value for every key that exists in the static defaults array.
+
 <snippet>
     <content><![CDATA[
 class $1 extends WP_Widget {
@@ -30,9 +37,10 @@ class $1 extends WP_Widget {
 		echo \$args['after_widget'];
 	}
 }
-$1::\$defaults = array(
+$1::\$defaults = array($0
 );
 
+add_action( 'widgets_init', create_function('', 'return register_widget("$1");') );
 ]]></content>
     <!-- Optional: Tab trigger to activate the snippet -->
     <tabTrigger>wp_widget</tabTrigger>
