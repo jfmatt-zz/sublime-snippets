@@ -1,0 +1,43 @@
+<snippet>
+    <content><![CDATA[
+class $1 extends WP_Widget {
+	public static \$defaults;
+	function __construct() {
+		parent::__construct("$1", "${2:title}", array(
+		        'classname' => "$1", 'description' => "${3:description}"
+		));
+	}
+
+	function form(\$instance) {
+		\$instance = wp_parse_args(\$instance, $1::\$defaults);
+
+	}
+
+	function update(\$new, \$old) {
+	    	\$old = wp_parse_args(\$old, $1::\$defaults);
+	    	\$instance = \$old;
+	    	foreach ($1::\$defaults as \$key => \$value) {
+	    		\$instance[\$key] = \$new[\$key];
+	    	}
+	    	return \$instance;
+	}
+
+	function widget(\$args, \$instance) {
+	    	\$instance = wp_parse_args(\$instance, $1::\$defaults);
+		echo \$args['before_widget'];
+
+
+		echo \$args['after_widget'];
+	}
+}
+$1::\$defaults = array(
+);
+
+]]></content>
+    <!-- Optional: Tab trigger to activate the snippet -->
+    <tabTrigger>wp_widget</tabTrigger>
+    <!-- Optional: Scope the tab trigger will be active in -->
+    <scope>source.php</scope>
+    <!-- Optional: Description to show in the menu -->
+    <description>WP Widget</description>
+</snippet>
